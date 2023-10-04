@@ -1,0 +1,38 @@
+<html style="font-size:1.3rem;">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>登录</title>
+        <link rel="icon" href="/files/logo_t.png">
+        <link type="text/css" rel="stylesheet" href="/css/style.css" />
+        <script src="/jquery/jquery.js"></script>
+        <script src="/jquery/vue2.js"></script>
+        <script src="/jquery/elementui.js"></script>
+        <link rel="stylesheet" href="https://unpkg.zhimg.com/element-ui/lib/theme-chalk/index.css">
+    </head>
+
+    <body "return false" onselectstart="return false;">
+        <div style="min-height: 100%;">
+            <div id="app"></div>
+            <span id="appnew">
+                <nav class="mainmenu" hidden role="navigation">
+                </nav>
+                <h1 class="center" style="height:10%">登录</h1>
+                <form style="height:50%" class="centerl" id="form">
+                    <p>用户名：<input type="text" class="userName" autofocus /><br /></p>
+                    <p>密码：<input type="password" class="password" /><br /></p>
+                    <p><el-button id="subbtn" class="subLogin center" native-type="submit" type="primary"
+                            :loading="isloading">登录</el-button></p>
+                </form>
+            </span>
+        </div><!--大布局-->
+        <div class="footer">
+        </div>
+        <script src="login.js"></script>
+        <script src="/structure/so_nav.js"></script>
+        <script src="/structure/so_footer.js"></script>
+
+    </body>
+
+</html>

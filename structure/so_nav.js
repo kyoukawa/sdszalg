@@ -4,14 +4,22 @@ var txt = `
 <span id="app"></span>
 <span id="appnav">
 <div class="row" style="justify-content:flex-start">
-<a href="/" class="bigLogo"><img src="http://sdszalg.cn/files/logo_tiny.png" style="width:5rem;height:3rem;object-fit:contain;margin: 0 1rem 0 1rem;"></img></a>
-<a href="/" class="bigLogoPH" style="display:none"><img src="http://sdszalg.cn/files/logo_tiny.png" style="width:2rem;height:2rem;object-fit:contain;margin: 0 0.1rem 0 0.5rem;"></img></a>
-
+<a href="/" class="bigLogo"><img src="/files/logo_tiny.png" style="width:5rem;height:3rem;object-fit:contain;margin: 0 1rem 0 1rem;"></img></a>
+<a href="/" class="bigLogoPH" style="display:none"><img src="/files/logo_tiny.png" style="width:2rem;height:2rem;object-fit:contain;margin: 0 0.1rem 0 0.5rem;"></img></a>
 <el-menu style="width:100%" :default-active="activeIndex" class="el-menu-demo" mode="horizontal" @select="handleSelect" background-color="#F0F8FF">
-  <!--<el-menu-item index="0"><span style="display:inline" class="navtitle center">首页</span></el-menu-item>-->
-  
+  <!--算法博客-->
+  <el-menu-item index="1"><span style="display:inline" class="navtitle center">博客</span></el-menu-item>
+  <!--小工具-->
+  <el-submenu index="2">
+    <template slot="title" ><span style="display:inline" class="navtitle center">小工具</span></template>
+    <el-menu-item index="3-pre1"><a href="/tools/guide.html" class="navcontent center"><span style="font-size:110%;">向导<span></b></a></el-menu-item>
+    <el-menu-item index="3-1"><a href="/tools/" class="navcontent center">随机提问</a></el-menu-item>
+    <el-menu-item index="3-2"><a href="/tools/link.html" class="navcontent center">快捷链接</a></el-menu-item>
+    <!--<el-menu-item index="3-3"><a href="/c21.html" class="navcontent center">【21班】轻课表</a></el-menu-item>-->
+  </el-submenu>
+  <el-menu-item index="3"><span style="display:inline" class="navtitle center">问题解答</span></el-menu-item>
 
-  
+
   <!--适配移动端！只改工el-menu这一个，加span就行-->
   <el-submenu index="101" class="PH1">
     <template slot="title" ><span style="display:inline" class="navtitle center toLoginTitle"><i class="el-icon-loading" style="line-height:3rem;"></i></span></template>
@@ -21,7 +29,6 @@ var txt = `
   <el-submenu index="102" class="PH2" style="display:none">
     <template slot="title" ><i class="el-icon-user-solid"></i><span style="display:inline" class="navtitle center username"></span></template>
     <el-menu-item index="102-1"><a href="/user/" class="navcontent center userCenter" style="display:none">个人中心</a></el-menu-item>
-    <el-menu-item index="102-3"><a href="/mail/" class="navcontent center">信件</a></el-menu-item>
     <!--<el-menu-item index="102-2"><a href="javascript:void(0);" class="navcontent center exitLogin" onclick="exitL()" style="display:none">退出登录</a></el-menu-item>-->
   </el-submenu>
 
@@ -40,7 +47,7 @@ var txt = `
   <el-submenu index="102">
     <template slot="title" ><i class="el-icon-user-solid"></i><span style="display:inline" class="navtitle center username" style="display:none"></span></template>
     <el-menu-item index="102-4"><a href="/user/" class="navcontent center" >个人中心</a></el-menu-item>
-    <el-menu-item index="102-3"><a href="/mail/" class="navcontent center" >信件</a></el-menu-item>
+
     <!--<el-menu-item index="102-1"><a href="javascript:void(0);" class="navcontent center exitLogin" onclick="exitL()" style="display:none">退出登录</a></el-menu-item>-->
   </el-submenu>
 </el-menu>
@@ -246,7 +253,10 @@ var vm = new Vue({
         window.location.href = '/'
       }
       else if (key == '1') {
-        window.location.href = '/ai/'
+        window.location.href = '/blog'
+      }
+      else if (key == '3') {
+        window.location.href = '/answer'
       }
     }
   }

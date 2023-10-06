@@ -27,13 +27,13 @@ function allReady() {
                 //alert(ret['msg']);
             }
             else {
-                vm.$alert('注册成功', {
+                vm.$alert('注册成功, 请登录', {
                     type: 'success'
                 }).then(() => {
                     //alert('登录成功')
                     //alert(ret['msg']);
-                    localStorage.setItem("userInfo", ret['msg']);
-                    var tolink = '/'
+                    //localStorage.setItem("userInfo", ret['msg']);
+                    var tolink = '/login/signIn'
                     if (typeof getUrlParam("redir") == 'string')
                         tolink = getUrlParam("redir")
                     window.location.href = tolink

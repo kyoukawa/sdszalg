@@ -1,4 +1,6 @@
 <?php
+$conn = new mysqli('localhost', 'users', '4B8mDxsbZdk6tpec', 'users');
+
 function postVal($tag, $val)
 {
     $api = 'http://tinywebdb.appinventor.space/api?user=xj****7&secret=77e4****31&action=update&tag=' . urlencode($tag) . '&value=' . urlencode($val);
@@ -20,7 +22,7 @@ function getVal($tag, $key)
     $sql = "SELECT * FROM users where name = '" . $key . "' limit 0,1;";
     $result = mysqli_query($conn, $sql);
     while ($row = mysqli_fetch_assoc($result)) {
-        if (addslashes($row["name"]) == $key) {
+        if (addslashes(($row["name"]) == $key)) {
             $resa = $row[$tag];
             $flag = false;
             break;

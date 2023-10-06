@@ -1,0 +1,79 @@
+<!doctype html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<title>欢迎来到博客中心！</title>
+		<link rel="icon" href="/files/logo_tiny.png">
+
+		<link type="text/css" rel="stylesheet" href="/css/style.css" />
+		<link type="text/css" rel="stylesheet" href="/css/elementui.css" />
+
+		<script src="/jquery/jquery.js"></script>
+		<script src="/jquery/vue2.js"></script>
+		<script src="/jquery/elementui.js"></script>
+		<style>
+			.image-container {
+				display: inline-block;
+				/* 将图片容器设置为行内块元素 */
+				vertical-align: middle;
+				/* 垂直居中对齐，可以根据需要调整 */
+			}
+
+			.text-container {
+				font-weight: bold;
+				display: inline-block;
+				/* 文本容器也设置为行内块元素 */
+				vertical-align: middle;
+				/* 垂直居中对齐，与图片容器对齐 */
+			}
+
+			.blog-element {
+				border: 2px solid;
+			}
+
+			h1 {
+
+				margin-left: auto;
+				margin-right: auto;
+				text-align: center;
+			}
+		</style>
+	</head>
+
+	<body "return false" onselectstart="return false;">
+		<div style="min-height: 100%;">
+			<div style="min-height: 100%;">
+				<div id="app"></div>
+				<span id="appnew">
+
+					<nav class="mainmenu" hidden role="navigation">
+
+					</nav>
+					<h1>欢迎来到博客中心！</h1>
+					<a href="/wordpress/index.php/2023/09/28/hello-world/">
+						<div class="blog-element">
+
+							<img class="image-container" src="files/shortest-path.png" width="100" height="100">
+							<p class="text-container">地图起点和终点是怎么找到最短的路线的？</p>
+						</div>
+					</a>
+					<a href="/wordpress/index.php/avl/">
+						<div class="blog-element">
+
+							<img class="image-container" src="files/avl.png" width="100" height="100">
+							<p class="text-container">如何利用二叉树内卷？（测试博客）</p>
+						</div>
+					</a>
+				</span>
+			</div>
+		</div>
+		<div class="footer">
+		</div>
+		<script>var nowpageid="1";</script>
+		<script src="/structure/so_nav.js"></script>
+		<script src="/structure/so_footer.js"></script>
+	</body>
+
+</html>

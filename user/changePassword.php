@@ -1,17 +1,14 @@
 <?php
 $ret;
+$reta;
+$resa;
+$flag = true;
 $pst = $_POST;
+$conn = new mysqli('localhost', 'users', '4B8mDxsbZdk6tpec', 'users');
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
 	$name = addslashes($_POST["userName"]);
 	$password = addslashes($_POST["password"]);
-
-	if (empty($name) or empty($password)) {
-		$ret['status'] = "error";
-		$ret['msg'] = "用户名、密码均不能为空";
-		echo json_encode($ret, JSON_UNESCAPED_UNICODE);
-		return;
-	}
-
+	$oldPassword = addslashes($_POST["oldPassword"]);
 	$conn = new mysqli('localhost', 'users', '4B8mDxsbZdk6tpec', 'users');
 	if ($conn->connect_error)
 		die("Connection failed: " . $conn->connect_error);
@@ -20,18 +17,32 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 	mysqli_select_db($conn, $db->$dbname);
 
-	$sql = "SELECT name FROM users";
+	$sql = "SELECT * FROM users where name = '" . $name . "' limit 0,1;";
 	$result = mysqli_query($conn, $sql);
 	while ($row = mysqli_fetch_assoc($result)) {
 		if (addslashes($row["name"]) == $name) {
-			$ret['status'] = "error";
-			$ret['msg'] = "请勿重复注册";
-			echo json_encode($ret, JSON_UNESCAPED_UNICODE);
-			return;
+			$resa = $row["password"];
+			$flag = false;
+			break;
 		}
 	}
+	if ($flag) {
+		$ret['status'] = "error";
+		$ret['msg'] = "用户不存在";
+		echo json_encode($ret, JSON_UNESCAPED_UNICODE);
+		return;
+	}
+	if ($resa != $oldPassword) {
+		$ret['status'] = "error";
+		$ret['msg'] = "密码错误";
+		echo json_encode($ret, JSON_UNESCAPED_UNICODE);
+		return;
+	}
 
-	$sql = "INSERT INTO users (name, password, userTag) VALUES ('" . $name . "', '" . "$password" . "' , 'user')";
+	$sql = "SELECT name FROM users";
+	$result = mysqli_query($conn, $sql);
+
+	$sql = "UPDATE users SET password = '" . $password . "' where name = '" . $name . "'";
 	// userTag
 	if ($conn->query($sql) === TRUE) {
 		$ret['status'] = "success";
@@ -39,7 +50,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 		return;
 	} else {
 		$ret['status'] = "error";
-		$ret['msg'] = "注册失败，请联系管理员";
+		$ret['msg'] = "修改失败，请联系管理员";
 		echo json_encode($ret, JSON_UNESCAPED_UNICODE);
 		return;
 	}

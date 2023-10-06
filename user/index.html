@@ -1,0 +1,82 @@
+<html lang="en" style="font-size:1.3rem;">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>个人中心</title>
+        <link rel="icon" href="/files/logo_tiny.png">
+
+        <link type="text/css" rel="stylesheet" href="/css/style.css" />
+        <link type="text/css" rel="stylesheet" href="/css/elementui.css" />
+
+        <script src="/jquery/jquery.js"></script>
+        <script src="/jquery/vue2.js"></script>
+        <script src="/jquery/elementui.js"></script>
+        <script src="/jquery/clipboard.min.js"></script>
+    </head>
+
+    <body "return false" onselectstart="return false;">
+        <div style="min-height: 100%;">
+            <nav class="mainmenu" hidden role="navigation">
+            </nav>
+            <span id="app">
+                <el-card class="box-card" style="background-color: transparent;" shadow="never">
+                    <div class="center">
+                        <el-breadcrumb separator="/" style="width: 100%;">
+                            <el-breadcrumb-item><a href="/">首页</a></el-breadcrumb-item>
+                            <el-breadcrumb-item><a href="/user">个人中心</a></el-breadcrumb-item>
+                        </el-breadcrumb>
+                    </div>
+                </el-card>
+                <div style="width: 100%;" class="center">
+                </div>
+                <div class="rowl" style="margin: 1rem 3rem; 1rem 3rem">
+                    <b>用户名 | </b>
+                    <span style="color: dodgerblue;">{{userData.name}}</span>
+                </div>
+                <div class="rowl" style="margin: 1rem 3rem; 1rem 3rem justify-content: flex-end;width: 100%;">
+                    <b>密&emsp;码 | </b>
+                    <el-button type="primary" @click="centerDialogVisible = true" :loading="isloading"
+                        style="margin-right: 2rem;">修改密码</el-button>
+                </div>
+                <el-dialog title="修改密码" :visible.sync="centerDialogVisible" width="80%" center>
+                    <el-form id="form" style="margin: 0;" label-width="80px">
+                        <el-form-item label="旧密码">
+                            <el-input v-model="form.oldPassword"></el-input>
+                        </el-form-item>
+                        <el-form-item label="新密码">
+                            <el-input v-model="form.newPassword"></el-input>
+                        </el-form-item>
+                        <el-form-item label="确认密码">
+                            <el-input v-model="form.confirmPassword"></el-input>
+                        </el-form-item>
+                        <el-form-item>
+                            <el-button type=" primary" @click="changePassword()" :loading="isloading">确定修改</el-button>
+                        </el-form-item>
+                    </el-form>
+                </el-dialog>
+                <div class="rowl" style="margin: 1rem 3rem; 1rem 3rem">
+                    <b>标&emsp;签 | </b>
+                    <span style="color: dodgerblue;">{{userData.tag}}</span>
+                    <el-tag :key="tag" v-for="tag in userData.tags" :disable-transitions="false" effect="plain"
+                        type="danger">{{tag}}</el-tag>
+                </div>
+                <div class="rowl" style="margin: 1rem 3rem; 1rem 3rem">
+                    <el-popconfirm @confirm="exitL()" title="确定退出登录？">
+                        <el-button type="danger" slot="reference">退出登录</el-button>
+                    </el-popconfirm>
+                </div>
+            </span>
+
+        </div><!--大布局-->
+
+        <div class="footer">
+        </div>
+        <script src="user.js"></script>
+        <script src="/structure/so_nav.js"></script>
+        <script src="/structure/so_footer.js"></script>
+
+
+    </body>
+
+</html>

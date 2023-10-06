@@ -66,7 +66,6 @@ function get_main()
     $regpwd = $ndec[1];
     global $gloname;
     $gloname = $regname;
-
     if (time() - $ndec[2] < 0) //伪造token
     {
         return cls_r("error", "时间验证失败");
@@ -74,7 +73,7 @@ function get_main()
     if (key_exists('ip', $pst) && key_exists('location', $pst)) {
         $ip = $pst['ip'];
         $loc = $pst['location'];
-        $res = postVal('登录信息web_' . $gloname, json_encode(array(date('Y-m-d H:i:s', time()), $ip, $loc), JSON_UNESCAPED_UNICODE));
+        //$res = postVal('登录信息web_' . $gloname, json_encode(array(date('Y-m-d H:i:s', time()), $ip, $loc), JSON_UNESCAPED_UNICODE));
         //return cls_r("cs",$res);
     }
     //return cls_r("error","登录失效，请重新登录test");//test
@@ -85,23 +84,7 @@ function get_main()
         $rets['isip'] = 'isip';
         return json_encode($rets, JSON_UNESCAPED_UNICODE);
     }
-    /*if(time()-$ndec[3] > 3600)//1h后登录失效
-    {
-        return cls_r("error","登录失效，请重新登录");
-    }*/
-    if (time() - $ndec[2] < 60) {
-        return cls_r("success", json_encode(array("name" => $regname), JSON_UNESCAPED_UNICODE));
-    }
-    //if(time() - $dec[3] > 60)
-    $nres = getValBD("password", $regname);
-
-    //$nres = getVal('用户_ceshi');
-    // if ($nres == 'null') {
-    //     return cls_r("error", "用户不存在");
-    // }
-    //return cls_r("cs63","err：token：".$token."；nres：".gettype($nres));
-    //return cls_r("cs72","err：regname：".$regname);
-    if ($nres != $regpwd) {
+    if (getValBD("password", $regname) != $regpwd) {
         return cls_r("error", "请重新登录");
     }
     return cls_r("success", json_encode(array("name" => $regname), JSON_UNESCAPED_UNICODE));

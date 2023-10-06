@@ -4,176 +4,43 @@
 	<head>
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
-		<title> 欢迎来到SDSZ信息学算法普及社的主页!</title>
-		<link rel="icon" href="/files/logo_t.png">
+
+		<title> SDSZ计算机科学社</title>
+
+		<link rel="icon" href="/files/logo_tiny.png">
+
 		<link type="text/css" rel="stylesheet" href="/css/style.css" />
+		<link type="text/css" rel="stylesheet" href="/css/elementui.css" />
+
 		<script src="/jquery/jquery.js"></script>
 		<script src="/jquery/vue2.js"></script>
 		<script src="/jquery/elementui.js"></script>
-		<link rel="stylesheet" href="https://unpkg.zhimg.com/element-ui/lib/theme-chalk/index.css">
-		<style>
-			.headbox
 
-			/*最上面的*/
-				{
-				height: 25px;
-				width: 100%;
-				margin: 0 auto;
-				background: black;
-			}
-
-			.logo {
-				display: block;
-				margin-top: auto;
-				margin-left: auto;
-				margin-bottom: auto;
-				margin-right: auto;
-			}
-
-			.importantHead
-
-			/*很重要的、要放在中间的东西*/
-				{
-				font-size: 50px;
-				font-weight: bold;
-				text-align: center;
-				color: #FFFFFF;
-			}
-
-			.banner {
-				position: relative;
-				overflow: hidden;
-				height: 300px;
-			}
-
-			.slide {
-				width: 100%;
-				height: 100%;
-				display: none;
-				position: absolute;
-			}
-
-			.slide img {
-				width: 100%;
-				height: 100%;
-				object-fit: cover;
-			}
-
-			.bloglist
-
-			/*这是博客的列表*/
-				{
-				width: 100%;
-				height: 200px;
-				margin-top: auto;
-				margin-bottom: auto;
-				position: relative;
-			}
-
-			.showcasepicture {
-				width: 100px;
-				height: 100px;
-				object-fit: cover;
-				position: absolute;
-			}
-
-			.logo {}
-		</style>
 	</head>
 
-	<body bgcolor="#000839" "return false" onselectstart="return false;">
-		<div id="app"></div>
-		<span id="appnew">
-			<nav class="mainmenu" hidden role="navigation">
-			</nav>
-		</span>
-		<div class="headbox">
-			<p align="right" style="color:white"> 未登录 </p>
+	<body "return false" onselectstart="return false;">
+		<nav class="mainmenu" hidden role="navigation"></nav>
+		<div id="app">
+			<el-image style="
+							display: block;
+							margin-top: auto;
+							margin-left: auto;
+							margin-bottom: auto;
+							margin-right: auto;
+							width: 20rem; 
+							height: 20rem;
+							" fit="cover" src="/files/logo_t.png"></el-image>
+			<h1 class="center">SDSZ计算机科学社</h1>
+
 		</div>
-		<img src="files/logo_t.png" width="300" class="logo"><br>
-		<p class="importantHead"> SDSZ信息学算法普及社</p><br>
-		<div class="banner">
-			<div class="slide">
-				<img src="files/blue.png" alt="Image 1">
-			</div>
-			<div class="slide">
-				<img src="files/red.png" alt="Image 1">
-			</div>
-			<div class="slide">
-				<img src="files/white.png" alt="Image 1">
-			</div>
+		<div class="footer">
 		</div>
-
-		<div class="bloglist">
-			<img src="files/shortest.png" alt="" width="381" height="384" class="showcasepicture">
-			<img src="files/bst.png" alt="" width="381" height="384" class="showcasepicture">
-		</div>
-		<form id="blogSizeForm">
-			<label for="sizeInput" style="color:white">这是一个调试功能，请输入你想要让博客单位方块的大小：</label>
-			<input type="number" id="sizeInput" name="size"><br>
-			<input type="submit" value="点击这里提交">
-		</form>
-
-		<script language="javascript">
-			document.getElementById("blogSizeForm").addEventListener("submit", function (event) {
-				event.preventDefault(); // 阻止表单默认提交行为,这样子就不会提交表单后就重新加载页面了，因为默认的话提交表单会重新加载页面
-				adjust(document.getElementById("sizeInput").value);
-			});
-			function adjust(size) {
-				const blogspic = document.querySelectorAll('.showcasepicture');
-				let viewportWidth = window.innerWidth;
-				//alert(viewportWidth);
-				let times;
-				timesMax = viewportWidth / size;//横向最多排列多少个
-				let time = 0;//第几个图片了
-				let vertime = 0;//第几列
-				timesMax = Math.floor(timesMax);
-				//		timesMax=1;
-				let est_ver = Math.ceil(blogspic.length / timesMax);//估测有多少列
-				const bloglist = document.querySelectorAll('.bloglist');
-				console.log(viewportWidth);
-				bloglist[0].style.height = ((est_ver) * size) + "px";
-
-				for (let i = 0; i < blogspic.length; i++) {
-					blogspic[i].style.width = size + "px";
-					blogspic[i].style.height = size + "px";
-				}
-				for (let i = 0; i < blogspic.length; i++) {
-					if (time >= timesMax) {
-						vertime++;
-						time = 0;
-					}
-					console.log("目前的time：" + time + "timemax:" + timesMax);
-					blogspic[i].style.left = (size * time) + "px";
-					blogspic[i].style.top = (size * vertime) + "px";
-					//console.log(timesMax);
-					time++;
-				}
-			}
-			adjust(100);
-		</script>
-
-
-
-
-		<script language="javascript">
-			const slides = document.querySelectorAll('.slide');
-			let currentslide = 0;
-			function showSlide(index) {
-				for (let i = 0; i < slides.length; i++) {
-					slides[i].style.display = "none";
-				}
-				slides[index].style.display = "block";
-			}
-			function nextSlide() {
-				currentslide++;
-				currentslide %= slides.length;
-				showSlide(currentslide);
-			}
-			setInterval(nextSlide, 2000);
-		</script>
+		<script src="index.js"></script>
 		<script src="/structure/so_nav.js"></script>
 		<script src="/structure/so_footer.js"></script>
+
 	</body>
+
+
 
 </html>

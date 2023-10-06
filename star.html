@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+
+    <head>
+        <title>动态星空</title>
+        <style>
+            body {
+                background-color: #000;
+                overflow: hidden;
+            }
+
+            .star {
+                position: absolute;
+                width: 2px;
+                height: 2px;
+                background-color: #fff;
+                border-radius: 50%;
+                animation: twinkle 1s infinite;
+            }
+
+            @keyframes twinkle {
+                0% {
+                    opacity: 0;
+                }
+
+                50% {
+                    opacity: 1;
+                }
+
+                100% {
+                    opacity: 0;
+                }
+            }
+        </style>
+    </head>
+
+    <body>
+        <script>
+            // 创建星星
+            function createStar() {
+                const star = document.createElement('div');
+                star.className = 'star';
+                star.style.top = `${Math.random() * 100}vh`;
+                star.style.left = `${Math.random() * 100}vw`;
+                star.style.animationDuration = `${Math.random() * 2 + 1}s`; // 随机设置闪烁速度
+                return star;
+            }
+
+            // 添加星星到页面
+            function addStars(numStars) {
+                const container = document.body;
+                for (let i = 0; i < numStars; i++) {
+                    const star = createStar();
+                    container.appendChild(star);
+                }
+            }
+
+            // 初始化星空效果
+            function initStarField() {
+                const numStars = 200;
+                addStars(numStars);
+            }
+
+            // 运行星空效果
+            initStarField();
+        </script>
+    </body>
+
+</html>
